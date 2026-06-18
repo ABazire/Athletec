@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { Plus } from "lucide-react";
 import { menu } from "../../app/data/menu";
 import { Button } from "@/components/ui/button";
 
@@ -16,7 +17,8 @@ function Ariane() {
         </h1>
         <p className="text-sm text-(--athletec-gris)">{page?.description}</p>
       </div>
-      <Button className="bg-(--athletec-orange) p-5 font-bold">
+      <Button className="rounded-full bg-(--athletec-orange) p-5 font-bold">
+        <Plus />
         Enregistrer un résultat
       </Button>
     </div>
