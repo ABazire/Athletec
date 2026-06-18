@@ -1,3 +1,7 @@
 export default function Page() {
-  return <></>;
+  return (
+    <>
+      <p>test de mon code</p>
+    </>
+  );
 }

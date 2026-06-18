@@ -6,7 +6,9 @@
 
 :root {
   --athletec-orange: #ec5a24;
-  --test: rgb(236, 90, 36);
+  --athletec-bleu: #0f2942;
+  --athletec-gris: #707a87;
+  --athletec-bg-gris: #f3f4f6;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

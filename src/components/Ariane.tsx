@@ -11,8 +11,10 @@ function Ariane() {
   return (
     <div className="flex w-full items-center justify-between border-b p-5">
       <div>
-        <h1 className="font-bold ">{page?.label}</h1>
-        <p>{page?.description}</p>
+        <h1 className="font-bold text-(--athletec-bleu) text-2xl ">
+          {page?.label}
+        </h1>
+        <p className="text-sm text-(--athletec-gris)">{page?.description}</p>
       </div>
       <Button className="bg-(--athletec-orange) p-5 font-bold">
         Enregistrer un résultat

@@ -6,9 +6,11 @@ export default function Layout(props: PropsWithChildren) {
   return (
     <div className="flex flex-1">
       <Sidebar />
-      <main className="flex-1">
+      <main className="flex-1 h-screen">
         <Ariane />
-        {props.children}
+        <div className="px-20 py-10 bg-(--athletec-bg-gris)">
+          {props.children}
+        </div>
       </main>
     </div>
   );
