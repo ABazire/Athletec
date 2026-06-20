@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Athletes {
+  id Int @id @default(autoincrement()) 
+  initials String  @default("")
+  name String @default("")
+  color String @default("")
+  category String @default("")
+  gender String @default("")
+  results Int @default(0)
+  events Int @default(0)
+  sexe String @default("")
+  mainEvent String @default("")
+}

@@ -1,9 +1,13 @@
 import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { athletes } from "@/app/data/athletes";
+// import { athletes } from "@/app/data/athletes";
+import { prisma } from "@/lib/prisma";
+import New from "./new/new";
 
-export default function Page() {
+export default async function Page() {
+  const athletes = await prisma.athletes.findMany();
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between gap-4">
@@ -19,9 +23,12 @@ export default function Page() {
           + Ajouter un athlète
         </Button>
       </div>
+      <div>
+        <New />
+      </div>
       <div className="grid grid-cols-4 gap-5">
-        {athletes.map((athlete, index) => (
-          <Card key={index} className="gap-4 p-5">
+        {athletes.map((athlete) => (
+          <Card key={athlete.id} className="gap-4 p-5">
             <div className="flex items-center gap-3">
               <div
                 className="flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white"
