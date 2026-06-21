@@ -1,6 +1,5 @@
 import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 // import { athletes } from "@/app/data/athletes";
 import { prisma } from "@/lib/prisma";
 import New from "./new/new";
@@ -19,11 +18,6 @@ export default async function Page() {
             className="h-10 w-full rounded-lg bg-white pl-9 pr-3 text-sm text-(--athletec-bleu) ring-1 ring-foreground/10 placeholder:text-(--athletec-gris) focus:outline-none"
           />
         </div>
-        <Button className="bg-(--athletec-bleu) h-10 px-4 font-bold">
-          + Ajouter un athlète
-        </Button>
-      </div>
-      <div>
         <New />
       </div>
       <div className="grid grid-cols-4 gap-5">
