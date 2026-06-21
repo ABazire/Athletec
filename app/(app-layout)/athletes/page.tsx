@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 // import { athletes } from "@/app/data/athletes";
 import { prisma } from "@/lib/prisma";
 import New from "./new/new";
+import DeleteAthleteButton from "./delete-athlete-button";
 
 export default async function Page() {
   const athletes = await prisma.athletes.findMany();
@@ -24,6 +25,7 @@ export default async function Page() {
         {athletes.map((athlete) => (
           <Card key={athlete.id} className="gap-4 p-5">
             <div className="flex items-center gap-3">
+              <DeleteAthleteButton athleteId={athlete.id} />
               <div
                 className="flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white"
                 style={{ backgroundColor: athlete.color }}

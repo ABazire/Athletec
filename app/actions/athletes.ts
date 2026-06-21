@@ -23,3 +23,11 @@ export async function createAthlete(formData: FormData) {
 
   revalidatePath("/athletes");
 }
+
+export async function deleteAthlete(id: number) {
+  await prisma.athletes.delete({
+    where: { id },
+  });
+
+  revalidatePath("/athletes");
+}
