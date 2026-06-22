@@ -18,13 +18,13 @@ const categories = ["Senior", "U20", "U18", "U17"];
 
 function New() {
   const [isOpen, setIsOpen] = useState(false);
-  const [gender, setGender] = useState("Hommes");
+  const [gender, setGender] = useState("Homme");
 
   async function handleCreate(formData: FormData) {
     formData.set("gender", gender);
     await createAthlete(formData);
     setIsOpen(false);
-    setGender("Hommes");
+    setGender("Homme");
     toast.success("Athlète créé avec succès");
   }
 

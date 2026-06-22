@@ -1,11 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Plus } from "lucide-react";
 import { menu } from "../../app/data/menu";
-import { Button } from "@/components/ui/button";
+import NewResult from "@/app/(app-layout)/resultats/new/new-result";
 
-function Ariane() {
+function Ariane({ athletes }: { athletes: { id: number; name: string }[] }) {
   const pathname = usePathname();
   const page = menu.find((item) => item.href === pathname);
 
@@ -17,10 +16,7 @@ function Ariane() {
         </h1>
         <p className="text-sm text-(--athletec-gris)">{page?.description}</p>
       </div>
-      <Button className="rounded-full bg-(--athletec-orange) p-5 font-bold">
-        <Plus />
-        Enregistrer un résultat
-      </Button>
+      <NewResult athletes={athletes} />
     </div>
   );
 }

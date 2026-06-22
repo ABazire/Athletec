@@ -1,12 +1,13 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { Category, Gender } from "../../generated/prisma/client";
 import { revalidatePath } from "next/cache";
 
 export async function createAthlete(formData: FormData) {
   const name = formData.get("name")?.toString() ?? "";
-  const category = formData.get("category")?.toString() ?? "";
-  const gender = formData.get("gender")?.toString() ?? "";
+  const category = formData.get("category")?.toString() as Category;
+  const gender = formData.get("gender")?.toString() as Gender;
   const mainEvent = formData.get("mainEvent")?.toString() ?? "";
   const initials = formData.get("initials")?.toString() ?? "";
 
@@ -25,9 +26,10 @@ export async function createAthlete(formData: FormData) {
 }
 
 export async function deleteAthlete(id: number) {
-  await prisma.athletes.delete({
-    where: { id },
-  });
+  await prisma.$transaction([
+    prisma.result.deleteMany({ where: { athleteId: id } }),
+    prisma.athletes.delete({ where: { id } }),
+  ]);
 
   revalidatePath("/athletes");
 }

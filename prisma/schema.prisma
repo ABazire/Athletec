@@ -12,15 +12,36 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Gender {
+  Hommes
+  Femmes
+}
+
+enum Category {
+  Senior
+  U20
+  U18
+  U17
+}
+
 model Athletes {
-  id Int @id @default(autoincrement()) 
+  id Int @id @default(autoincrement())
   initials String  @default("")
   name String @default("")
   color String @default("")
-  category String @default("")
-  gender String @default("")
-  results Int @default(0)
+  category Category @default(Senior)
+  gender Gender @default(Hommes)
   events Int @default(0)
-  sexe String @default("")
   mainEvent String @default("")
+
+  results Result[]
+}
+
+model Result {
+  id Int @id @default(autoincrement())
+  value String
+  date DateTime @default(now())
+
+  athleteId Int
+  athlete Athletes @relation(fields: [athleteId], references: [id])
 }

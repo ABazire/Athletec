@@ -3,10 +3,17 @@ import { Card } from "@/components/ui/card";
 // import { athletes } from "@/app/data/athletes";
 import { prisma } from "@/lib/prisma";
 import New from "./new/new";
+import NewResult from "./new-result";
 import DeleteAthleteButton from "./delete-athlete-button";
 
 export default async function Page() {
-  const athletes = await prisma.athletes.findMany();
+  const athletes = await prisma.athletes.findMany({
+    include: { _count: { select: { results: true } } },
+  });
+
+  const results = await prisma.result.findMany({
+    include: { athlete: true },
+  });
 
   return (
     <div className="flex flex-col gap-6">
@@ -21,6 +28,7 @@ export default async function Page() {
         </div>
         <New />
       </div>
+
       <div className="grid grid-cols-4 gap-5">
         {athletes.map((athlete) => (
           <Card key={athlete.id} className="gap-4 p-5">
@@ -50,7 +58,7 @@ export default async function Page() {
               <div className="flex gap-5">
                 <div>
                   <p className="font-bold text-(--athletec-bleu)">
-                    {athlete.results}
+                    {athlete._count.results}
                   </p>
                   <p className="text-[0.65rem] font-semibold text-(--athletec-gris) uppercase">
                     Résultats
