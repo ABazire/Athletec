@@ -12,6 +12,8 @@ export default async function Page() {
     include: { athlete: true },
     orderBy: { date: "desc" },
   });
+  const athleteCount = await prisma.athletes.count();
+  const resultCount = await prisma.result.count();
 
   return (
     <>
@@ -22,7 +24,7 @@ export default async function Page() {
               Athlètes
             </CardHeader>
             <CardContent className="text-3xl font-extrabold text-(--athletec-bleu)">
-              9
+              {athleteCount}
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
               dans l'effectif
@@ -33,7 +35,7 @@ export default async function Page() {
               Résultats saisis
             </CardHeader>
             <CardContent className="text-3xl font-extrabold text-(--athletec-bleu)">
-              26
+              {resultCount}
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
               cette saison
