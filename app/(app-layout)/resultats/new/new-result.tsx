@@ -12,7 +12,13 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-function NewResult({ athletes }: { athletes: { id: number; name: string }[] }) {
+function NewResult({
+  athletes,
+  event,
+}: {
+  athletes: { id: number; name: string }[];
+  event: { id: number; name: string }[];
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   async function resultCreate(formData: FormData) {
@@ -55,12 +61,70 @@ function NewResult({ athletes }: { athletes: { id: number; name: string }[] }) {
             </select>
           </div>
           <div className="flex flex-1 flex-col gap-1.5">
+            <div>
+              <label className="text-sm font-semibold text-(--athletec-bleu)">
+                Épreuve
+              </label>
+              <p></p>
+            </div>
+            <select
+              name="eventId"
+              required
+              defaultValue=""
+              className="h-11 w-full rounded-lg bg-(--athletec-bg-gris) px-3 text-sm text-(--athletec-bleu) focus:outline-none focus:ring-2 focus:ring-(--athletec-orange)"
+            >
+              <option value="" disabled>
+                Sélectionner une épreuve...
+              </option>
+              {event.map((events) => (
+                <option key={events.id} value={events.id}>
+                  {events.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-1 flex-col gap-1.5">
             <label className="text-sm font-semibold text-(--athletec-bleu)">
               Résultat
             </label>
             <input
               name="value"
               placeholder="ex. 10.23s"
+              required
+              className="h-11 w-full rounded-lg bg-(--athletec-bg-gris) px-3 text-sm text-(--athletec-bleu) placeholder:text-(--athletec-gris) focus:outline-none focus:ring-2 focus:ring-(--athletec-orange)"
+            />
+          </div>
+          <div className="flex flex-1 gap-1.5">
+            <div>
+              <label className="text-sm font-semibold text-(--athletec-bleu)">
+                Date
+              </label>
+              <input
+                name="value"
+                placeholder="ex. 10.23s"
+                required
+                className="h-11 w-full rounded-lg bg-(--athletec-bg-gris) px-3 text-sm text-(--athletec-bleu) placeholder:text-(--athletec-gris) focus:outline-none focus:ring-2 focus:ring-(--athletec-orange)"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-(--athletec-bleu)">
+                Position
+              </label>
+              <input
+                name="position"
+                placeholder="ex. 10.23s"
+                required
+                className="h-11 w-full rounded-lg bg-(--athletec-bg-gris) px-3 text-sm text-(--athletec-bleu) placeholder:text-(--athletec-gris) focus:outline-none focus:ring-2 focus:ring-(--athletec-orange)"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-sm font-semibold text-(--athletec-bleu)">
+              Compétition
+            </label>
+            <input
+              name="competition"
+              placeholder="ex. Championnats départementaux"
               required
               className="h-11 w-full rounded-lg bg-(--athletec-bg-gris) px-3 text-sm text-(--athletec-bleu) placeholder:text-(--athletec-gris) focus:outline-none focus:ring-2 focus:ring-(--athletec-orange)"
             />

@@ -39,9 +39,19 @@ model Athletes {
 
 model Result {
   id Int @id @default(autoincrement())
-  value String
+  value String @default("")
   date DateTime @default(now())
+  competition String @default("")
 
   athleteId Int
   athlete Athletes @relation(fields: [athleteId], references: [id])
+  eventId Int 
+  event Event @relation(fields: [eventId], references: [id])
+}
+
+model Event {
+  id Int @id @default(autoincrement())
+  name String @default("")
+
+  results Result[]
 }

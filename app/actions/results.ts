@@ -5,10 +5,11 @@ import { revalidatePath } from "next/cache";
 
 export async function createResult(formData: FormData) {
   const athleteId = Number(formData.get("athleteId"));
+  const eventId = Number(formData.get("eventId"));
   const value = formData.get("value")?.toString() ?? "";
 
   await prisma.result.create({
-    data: { athleteId, value },
+    data: { athleteId, eventId, value },
   });
 
   revalidatePath("/");

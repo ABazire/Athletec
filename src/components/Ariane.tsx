@@ -4,7 +4,13 @@ import { usePathname } from "next/navigation";
 import { menu } from "../../app/data/menu";
 import NewResult from "@/app/(app-layout)/resultats/new/new-result";
 
-function Ariane({ athletes }: { athletes: { id: number; name: string }[] }) {
+function Ariane({
+  athletes,
+  event,
+}: {
+  athletes: { id: number; name: string }[];
+  event: { id: number; name: string }[];
+}) {
   const pathname = usePathname();
   const page = menu.find((item) => item.href === pathname);
 
@@ -16,7 +22,7 @@ function Ariane({ athletes }: { athletes: { id: number; name: string }[] }) {
         </h1>
         <p className="text-sm text-(--athletec-gris)">{page?.description}</p>
       </div>
-      <NewResult athletes={athletes} />
+      <NewResult athletes={athletes} event={event} />
     </div>
   );
 }
