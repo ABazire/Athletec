@@ -100,8 +100,8 @@ function NewResult({
                 Date
               </label>
               <input
-                name="value"
-                placeholder="ex. 10.23s"
+                name="date"
+                type="date"
                 required
                 className="h-11 w-full rounded-lg bg-(--athletec-bg-gris) px-3 text-sm text-(--athletec-bleu) placeholder:text-(--athletec-gris) focus:outline-none focus:ring-2 focus:ring-(--athletec-orange)"
               />
