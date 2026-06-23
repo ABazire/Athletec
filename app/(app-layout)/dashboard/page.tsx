@@ -11,6 +11,7 @@ export default async function Page() {
   const results = await prisma.result.findMany({
     include: { athlete: true },
     orderBy: { date: "desc" },
+    take: 8,
   });
   const athleteCount = await prisma.athletes.count();
   const resultCount = await prisma.result.count();
@@ -20,10 +21,10 @@ export default async function Page() {
       <div className="flex flex-col gap-6 h-full">
         <div className="flex gap-4">
           <Card className="flex-1">
-            <CardHeader className="text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
+            <CardHeader className="font-heading text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
               Athlètes
             </CardHeader>
-            <CardContent className="text-3xl font-extrabold text-(--athletec-bleu)">
+            <CardContent className="font-heading text-5xl font-extrabold text-(--athletec-bleu)">
               {athleteCount}
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
@@ -34,7 +35,7 @@ export default async function Page() {
             <CardHeader className="text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
               Résultats saisis
             </CardHeader>
-            <CardContent className="text-3xl font-extrabold text-(--athletec-bleu)">
+            <CardContent className="text-5xl font-extrabold text-(--athletec-bleu)">
               {resultCount}
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
@@ -45,7 +46,7 @@ export default async function Page() {
             <CardHeader className="text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
               Épreuves suivies
             </CardHeader>
-            <CardContent className="text-3xl font-extrabold text-(--athletec-bleu)">
+            <CardContent className="text-5xl font-extrabold text-(--athletec-bleu)">
               10
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
@@ -56,7 +57,7 @@ export default async function Page() {
             <CardHeader className="text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
               Ce mois-ci
             </CardHeader>
-            <CardContent className="text-3xl font-extrabold text-(--athletec-orange)">
+            <CardContent className="text-5xl font-extrabold text-(--athletec-orange)">
               10
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
