@@ -9,7 +9,7 @@ import { prisma } from "@/lib/prisma";
 
 export default async function Page() {
   const results = await prisma.result.findMany({
-    include: { athlete: true },
+    include: { athlete: true, event: true },
     orderBy: { date: "desc" },
     take: 8,
   });
@@ -21,10 +21,10 @@ export default async function Page() {
       <div className="flex flex-col gap-6 h-full">
         <div className="flex gap-4">
           <Card className="flex-1">
-            <CardHeader className="font-heading text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
+            <CardHeader className=" text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
               Athlètes
             </CardHeader>
-            <CardContent className="font-heading text-5xl font-extrabold text-(--athletec-bleu)">
+            <CardContent className=" text-5xl font-extrabold text-(--athletec-bleu)">
               {athleteCount}
             </CardContent>
             <CardDescription className="px-(--card-spacing)">
@@ -77,16 +77,17 @@ export default async function Page() {
               </a>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-[1fr_auto_auto] items-center gap-6 border-b px-5 py-3 text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
+              <div className="grid grid-cols-[2fr_1fr_2fr_1fr] items-center gap-4 border-b px-5 py-3 text-xs font-semibold tracking-wide text-(--athletec-gris) uppercase">
                 <span>Athlète</span>
-                <span className="text-right">Perf</span>
+                <span>Épreuve</span>
+                <span>Perf / Compétition</span>
                 <span className="text-right">Date</span>
               </div>
               <div className="divide-y">
                 {results.map((result) => (
                   <div
                     key={result.id}
-                    className="grid grid-cols-[1fr_auto_auto] items-center gap-6 px-5 py-3"
+                    className="grid grid-cols-[2fr_1fr_2fr_1fr] items-center gap-4 px-5 py-3"
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -99,8 +100,16 @@ export default async function Page() {
                         {result.athlete.name}
                       </p>
                     </div>
-                    <p className="text-right font-bold text-(--athletec-bleu)">
-                      {result.value}
+                    <p className="text-(--athletec-gris)">
+                      {result.event.name}
+                    </p>
+                    <p className="flex items-baseline gap-2">
+                      <span className="font-bold text-(--athletec-bleu)">
+                        {result.value}
+                      </span>
+                      <span className="text-sm text-(--athletec-gris)">
+                        {result.competition}
+                      </span>
                     </p>
                     <p className="text-right text-sm text-(--athletec-gris)">
                       {result.date.toLocaleDateString("fr-FR", {
